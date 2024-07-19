@@ -208,6 +208,15 @@ if test "x$have_cppunit" != "xyes"; then
   AC_MSG_WARN([$CPPUNIT_PKG_ERRORS])
 fi
 
+# Check iconv
+AC_CHECK_LIB([iconv], [iconv_open], , [ac_found_iconf=no])
+if test "x$ac_found_iconf" = "xno"; then
+  AC_CHECK_LIB([iconv], [libiconv_open], , [ac_found_iconf=no])
+fi
+if test "x$ac_found_iconf" = "xyes"; then
+  LIBS="-liconv $LIBS"
+fi
+
 # Check availability of libz
 if test "x$with_libz" = "xyes"; then
   PKG_CHECK_MODULES([ZLIB], [zlib >= 1.2.3], [have_zlib=yes], [have_zlib=no])
