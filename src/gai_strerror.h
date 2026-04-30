@@ -52,11 +52,7 @@ extern "C" {
 /*
  * Functions.
  */
-#ifdef __STDC__
 const char* gai_strerror(int);
-#else
-const char* gai_strerror();
-#endif
 
 #ifdef __cplusplus
 };
